@@ -5,19 +5,20 @@ const CartContext = createContext();
 
 
 const getLocalCartData = () => {
-    let localStorageData = localStorage.getItem("pummyCart")
+    let localStorageData = localStorage.getItem("pummyCart");
 
-    if(localStorageData.length === 0){
-
-        return []
-
+    if (!localStorageData) {
+        // If localStorageData is null, return an empty array
+        return [];
     }
-    else{
-        return JSON.parse(localStorageData)
+
+    try {
+        return JSON.parse(localStorageData);
+    } catch (error) {
+        console.error("Error parsing local storage data:", error);
+        return [];
     }
-}
-
-
+};
 
 const initialState = {
 //   cart: [],
